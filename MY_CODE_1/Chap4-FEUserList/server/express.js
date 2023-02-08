@@ -7,16 +7,20 @@ import cors from 'cors'
 import index from '../index'
 import userRoutes from "./routes/user.routes"
 import authRoutes from "./routes/auth.routes"
+import devBundle from "./devBundle"
+import path from 'path'
 
 
 const app = express()
-
+const CURRENT_WORKING_DIR = process.cwd ()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(compress())
 app.use(helmet())
 app.use(cors())
+
+devBundle.compile(app)
 
 //Serving an HTML template at a root URL
 app.get('/', (req,res)=>{
