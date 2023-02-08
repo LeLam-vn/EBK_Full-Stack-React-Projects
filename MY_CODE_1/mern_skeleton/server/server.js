@@ -11,7 +11,7 @@ app.listen(config.port, (error) =>{
 
 //Connecting to MongoDB
 mongoose.Promise = global.Promise
-mongoose.connect (config.mongoUri,)
+mongoose.connect (config.mongoUri,{ useUnifiedTopology: true, useNewUrlParser: true })
 mongoose.connection.on('error', () => {
     throw new Error(`unable to database:$ {mongoUri}`)
 })
